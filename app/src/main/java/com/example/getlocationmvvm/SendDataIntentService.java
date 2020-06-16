@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import static com.example.getlocationmvvm.App.CHANNEL_ID;
+
 public class SendDataIntentService extends IntentService {
 
     private PowerManager.WakeLock wakeLock;
@@ -50,7 +52,7 @@ public class SendDataIntentService extends IntentService {
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             Notification notification = new Notification.Builder(this,
-                    "SendDataIntentService")
+                    CHANNEL_ID)
                     .setContentTitle("Example")
                     .setContentText("Running...")
                     .setSmallIcon(R.drawable.ic_launcher_background)
@@ -65,14 +67,14 @@ public class SendDataIntentService extends IntentService {
         String input = intent.getStringExtra("inputExtra");
         for(int i = 0; i < 10; i++){
             Log.e("intent", input + " - " + i);
-            Log.e("intent data", "latitude " + getCurrentLocation()[0]
-                    + "\n longitude " +  getCurrentLocation()[1]);
+            Log.e("intent data", "latitude " + getCurrentLocation().getLatitude()
+                    + "\n longitude " +  getCurrentLocation().getLongitude());
             SystemClock.sleep(1000);
         }
     }
 
-    private String[] getCurrentLocation() {
-        final String[] data = new String[2];
+    private Location getCurrentLocation() {
+        final Location data = null;
         final LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(1000);
         locationRequest.setFastestInterval(500);
@@ -101,11 +103,10 @@ public class SendDataIntentService extends IntentService {
                             double longitude =
                                     locationResult.getLocations().get(latestLocationIndex).getLongitude();
 
-                            data[0] = String.valueOf(latitude);
-                            data[1] = String.valueOf(longitude);
-//                            Location location = new Location("providerNA");
-//                            location.setLatitude(latitude);
-//                            location.setLongitude(longitude);
+//                            Log.e("intent latttt", String.valueOf(latitude));
+
+                            data.setLatitude(latitude);
+                            data.setLongitude(longitude);
 //                            fetchAddressFromLatLong(location);
                         }
 

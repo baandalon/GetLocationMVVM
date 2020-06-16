@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -115,6 +116,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, Looper.getMainLooper());
     }
+
+    public void newService(View view) {
+        String input = "datossss";
+        Intent service = new Intent(this, SendDataIntentService.class);
+        service.putExtra("intentExtra", input);
+        ContextCompat.startForegroundService(this, service);
+    }
+
     private class AddressResultReceiver extends ResultReceiver{
         public AddressResultReceiver(Handler handler) {
             super(handler);
