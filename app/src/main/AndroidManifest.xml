@@ -28,6 +28,7 @@
             android:resource="@array/preloaded_fonts" />
         <service android:name=".FetchAddressIntentService"/>
         <service android:name=".SendDataIntentService"/>
+        <service android:name=".SendDataIntentServiceKot"/>
     </application>
 
 </manifest>
