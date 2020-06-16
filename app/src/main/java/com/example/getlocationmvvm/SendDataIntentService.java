@@ -10,6 +10,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
 import android.os.ResultReceiver;
@@ -17,6 +18,7 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -36,6 +38,8 @@ import static com.example.getlocationmvvm.App.CHANNEL_ID;
 public class SendDataIntentService extends IntentService {
 
     private PowerManager.WakeLock wakeLock;
+    private ResultReceiver resultReceiver;
+
     public SendDataIntentService(){
         super("SendDataIntentService");
         setIntentRedelivery(true);
@@ -45,6 +49,7 @@ public class SendDataIntentService extends IntentService {
     public void onCreate() {
         super.onCreate();
         Log.e("intent", "onCreate");
+        resultReceiver = new AddressResultReceiver(new Handler());
         PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                 "Example:Wakelock");
@@ -65,11 +70,32 @@ public class SendDataIntentService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.e("intent", "onHandleIntent");
         String input = intent.getStringExtra("inputExtra");
+        Location dataReceived;
         for(int i = 0; i < 10; i++){
             Log.e("intent", input + " - " + i);
-            Log.e("intent data", "latitude " + getCurrentLocation().getLatitude()
-                    + "\n longitude " +  getCurrentLocation().getLongitude());
+            dataReceived = getCurrentLocation();
             SystemClock.sleep(1000);
+            Log.e("intent data", "latitude " + dataReceived.getLatitude()
+                    + "\n longitude " +  dataReceived.getLongitude());
+            SystemClock.sleep(1000);
+        }
+    }
+
+    private class AddressResultReceiver extends ResultReceiver{
+        public AddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if(resultCode == Constants.SUCCESS_RESULT){
+                txtAddress.setText(resultData.getString(Constants.RESULT_DATA_KEY));
+            }else{
+                Toast.makeText(MainActivity.this, resultData.getString(Constants.RESULT_DATA_KEY),
+                        Toast.LENGTH_SHORT).show();
+            }
+            progressBar.setVisibility(View.GONE);
         }
     }
 
@@ -89,6 +115,7 @@ public class SendDataIntentService extends IntentService {
             // for ActivityCompat#requestPermissions for more details.
             return data;
         }
+
         LocationServices.getFusedLocationProviderClient(SendDataIntentService.this)
                 .requestLocationUpdates(locationRequest, new LocationCallback() {
                     @Override
@@ -103,7 +130,8 @@ public class SendDataIntentService extends IntentService {
                             double longitude =
                                     locationResult.getLocations().get(latestLocationIndex).getLongitude();
 
-//                            Log.e("intent latttt", String.valueOf(latitude));
+                            Log.e("intent latttt", String.valueOf(latitude));
+                            Log.e("intent lonnnn", String.valueOf(longitude));
 
                             data.setLatitude(latitude);
                             data.setLongitude(longitude);
