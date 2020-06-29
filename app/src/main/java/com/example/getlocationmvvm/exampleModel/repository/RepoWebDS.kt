@@ -1,5 +1,6 @@
 package com.example.getlocationmvvm.exampleModel.repository
 
+import android.util.Log
 import com.example.getlocationmvvm.exampleModel.interfaces.DataInterfaces
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -10,14 +11,19 @@ class RepoWebDS {
 //    val listener: DataInterfaces? = null
     var valueEventListener: ValueEventListener? = null
     var reference = FirebaseDatabase.getInstance().reference
-    fun getData(path: String,  s : DataInterfaces){
+    var setInterfaces: DataInterfaces? = null
+
+    fun setDataInterfaces(dataInterfaces: DataInterfaces){
+        this.setInterfaces = dataInterfaces
+    }
+    fun getData(path: String){
         reference = FirebaseDatabase.getInstance().getReference(path)
         valueEventListener = object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
             }
             override fun onDataChange(snapshot: DataSnapshot) {
-                s.onDataChanged(snapshot)
-//                listener?.onDataChanged(snapshot)
+                setInterfaces?.onDataChanged(snapshot)
+                Log.e("data", "changed")
             }
         }
         reference.addValueEventListener(valueEventListener as ValueEventListener)
