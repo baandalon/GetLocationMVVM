@@ -12,10 +12,11 @@ import com.google.firebase.database.DataSnapshot
 
 class MainViewModel: ViewModel(), DataInterfaces{
 
-    val repo: RepoWebDS? = null
+    var repo: RepoWebDS? = null
     var dataModel: MutableLiveData<ModelStructure>? = null
 
     init {
+        repo = RepoWebDS()
         dataModel = MutableLiveData()
         repo?.setDataInterfaces(this)
     }
@@ -24,18 +25,10 @@ class MainViewModel: ViewModel(), DataInterfaces{
     }
 
     override fun onDataChanged(data: DataSnapshot) {
-        val modelAction = data.child("action").getValue(Action::class.java)
-        val modelData = data.child("data").getValue(Data::class.java)
-        Log.e("action1", modelAction?.action1.toString() + "${modelAction?.action2}")
-//                val modelStructure = ModelStructure(modelAction!!, modelData!!)
-//                dataModel!!.postValue(modelStructure)
+        val modelAction: Action = data.child("action").getValue(Action::class.java)!!
+        val modelData: Data = data.child("data").getValue(Data::class.java)!!
+                val modelStructure = ModelStructure(modelAction, modelData)
+                dataModel!!.postValue(modelStructure)
     }
 
-//    override fun onDataChanged(data: DataSnapshot) {
-//        val modelAction = data.child("action").getValue(Action::class.java)
-//        val modelData = data.child("data").getValue(Data::class.java)
-//        Log.e("action1", modelAction?.action1.toString() + "${modelAction?.action2}")
-////                val modelStructure = ModelStructure(modelAction!!, modelData!!)
-////                dataModel!!.postValue(modelStructure)
-//    }
 }

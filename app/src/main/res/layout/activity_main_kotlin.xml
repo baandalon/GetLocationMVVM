@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.getlocationmvvm.exampleModel.viewmodel.MainViewModel" />
+    </data>
+    <LinearLayout
+        android:gravity="center_horizontal"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/txtaction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Latitude"
-        android:textSize="17sp" />
-    <TextView
-        android:id="@+id/txtdata"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtaction"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Longitud"
-        android:textSize="17sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@{viewModel.dataModel.data.name}"
+            android:textSize="17sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@{viewModel.dataModel.data.edad}"
+            android:textSize="17sp" />
 
-</RelativeLayout>
+    </LinearLayout>
+</layout>
