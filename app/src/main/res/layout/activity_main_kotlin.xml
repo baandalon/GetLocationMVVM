@@ -2,7 +2,7 @@
 <layout>
     <data>
         <variable
-            name="viewModel"
+            name="viewModel2"
             type="com.example.getlocationmvvm.exampleModel.viewmodel.MainViewModel" />
     </data>
     <LinearLayout
@@ -15,16 +15,20 @@
         tools:context=".MainActivity">
 
         <TextView
+            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
-            android:text="@{viewModel.dataModel.data.name}"
+            tools:text="NAME"
+            android:text="@{viewModel2.dataModel.action.action2}"
             android:textSize="17sp" />
         <TextView
+            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
-            android:text="@{viewModel.dataModel.data.edad}"
+            tools:text="ACTION2"
+            android:text="@{viewModel2.dataModel.data.name}"
             android:textSize="17sp" />
 
     </LinearLayout>
