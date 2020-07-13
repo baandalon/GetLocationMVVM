@@ -12,7 +12,7 @@ import com.google.firebase.database.DataSnapshot
 class MainViewModel: ViewModel(), LifecycleObserver, DataInterfaces{
 
     var repo = RepoWebDS()
-    var dataModel= MutableLiveData<ModelStructure>()
+    var dataModel= MutableLiveData<ModelStructure>(null)
 
     init {
         dataModel = MutableLiveData()

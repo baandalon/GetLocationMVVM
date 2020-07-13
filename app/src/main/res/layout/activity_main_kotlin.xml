@@ -1,53 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="viewModel2"
             type="com.example.getlocationmvvm.exampleModel.viewmodel.MainViewModel" />
     </data>
-    <LinearLayout
-        android:gravity="center_horizontal"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".MainActivity">
-        <com.tistory.zladnrms.roundablelayout.RoundableLayout
-            app:cornerLeftSide="10dp"
-            app:cornerRightSide="10dp"
-            android:layout_marginHorizontal="10dp"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="250dp">
+
+            <LinearLayout
+                android:elevation="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginBottom="20dp"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text='@{viewModel2.dataModel != null?"Hola, " + viewModel2.dataModel.action.action2:"Hola"}'
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textSize="17sp"
+                    android:fontFamily="@font/roboto_light"
+                    android:text="Comparte tu ubicacion\ncon tus seres queridos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <Button
-                    android:onClick="start"
-                    android:text="Start"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAllCaps="false"/>
+
+                <com.github.florent37.diagonallayout.DiagonalLayout
+                    android:id="@+id/diagonalLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    app:diagonal_angle="30"
+                    app:diagonal_direction="left"
+                    app:diagonal_position="bottom">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        app:lottie_loop="true"
+                        android:layout_marginBottom="50dp"
+                        app:lottie_autoPlay="true"
+                        app:lottie_rawRes="@raw/map3"/>
+
+                </com.github.florent37.diagonallayout.DiagonalLayout>
+
             </LinearLayout>
-        </com.tistory.zladnrms.roundablelayout.RoundableLayout>
 
-        <TextView
-            android:textColor="#000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
-            tools:text="NAME"
-            android:text="@{viewModel2.dataModel.action.action2}"
-            android:textSize="17sp" />
-        <TextView
-            android:textColor="#000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
-            tools:text="ACTION2"
-            android:text="@{viewModel2.dataModel.data.name}"
-            android:textSize="17sp" />
+        </RelativeLayout>
 
-    </LinearLayout>
+        <Button
+            android:layout_alignParentBottom="true"
+            android:onClick="start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iniciar"
+            android:textAllCaps="false" />
+    </RelativeLayout>
 </layout>

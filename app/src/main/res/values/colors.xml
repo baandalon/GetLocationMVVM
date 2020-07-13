@@ -5,5 +5,20 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="black">#000</color>
     <color name="topImage">#004A9E</color>
+
+    //Colores UX
+    <color name="yellow_light">#FEF5D8</color>
+
+    <color name="green_light">#BDEDE0</color>
+    <color name="green_strong">#31E6B5</color>
+
+    <color name="blue_light">#CBE7EB</color>
+    <color name="blue_light2">#DAE7F7</color>
+
+    <color name="purple_light">#C5CEDD</color>
+    <color name="purple_light2">#CED1F1</color>
+    <color name="purple_strong">#7B85F3</color>
 </resources>
