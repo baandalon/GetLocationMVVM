@@ -36,12 +36,18 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.51'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation 'com.github.muigukenneth:ElegantDialog:1.1.5'
-    implementation 'com.github.zladnrms:RoundableLayout:1.1.3'
+
+    //PrettyCustomLayouts
     implementation 'com.github.florent37:diagonallayout:1.0.9'
+    implementation 'com.github.zladnrms:RoundableLayout:1.1.3'
+    //lottieAnimation
     implementation 'com.airbnb.android:lottie:3.4.1'
+    //switcherX
+    implementation 'com.bitvale:switcher:1.1.0'
+    //Counter
+//    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
 }

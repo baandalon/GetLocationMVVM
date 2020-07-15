@@ -18,7 +18,10 @@
     <color name="blue_light">#CBE7EB</color>
     <color name="blue_light2">#DAE7F7</color>
 
-    <color name="purple_light">#C5CEDD</color>
-    <color name="purple_light2">#CED1F1</color>
-    <color name="purple_strong">#7B85F3</color>
+    <color name="purple_light">#F5F5FF</color>
+    <color name="purple_middle">#8881AB</color>
+    <color name="purple_strong">#5445D4</color>
+
+    <color name="on_color">#48EA8B</color>
+    <color name="off_color">#FF4651</color>
 </resources>

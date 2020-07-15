@@ -8,45 +8,42 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.getlocationmvvm.R
 import com.example.getlocationmvvm.databinding.ActivityMainKotlinBinding
 import com.example.getlocationmvvm.exampleModel.viewmodel.MainViewModel
-import com.gurutouchlabs.kenneth.elegantdialog.ElegantDialog
 
 
 class MainActivityKotlin : AppCompatActivity() {
     val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
+    lateinit var dataBindingUtil: ActivityMainKotlinBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_kotlin)
         lifecycle.addObserver(viewModel)
-        DataBindingUtil.setContentView<ActivityMainKotlinBinding>(this,
+        dataBindingUtil = DataBindingUtil.setContentView<ActivityMainKotlinBinding>(this,
                 R.layout.activity_main_kotlin).apply {
+            //*** Con el apply puedes acceder a lo que está dentro del elemento ***
             this.lifecycleOwner = this@MainActivityKotlin
-            this.viewModel2 = viewModel
+            this.viewModelMain = viewModel
         }
 
     }
 
     fun start(view: View) {
-        val dialog = ElegantDialog(this)
-                .setTitleIcon(resources.getDrawable( R.drawable.dialog))//Set title icon drawable if your not loading with Glide or Picasso )//Set title icon drawable if your not loading with Glide or Picasso
-                .setTitleIconBackgroundColor(resources.getColor(R.color.topImage)) //Set title icon drawable background color
-                .setBackgroundTopColor(resources.getColor(R.color.white))// Set top color//                .setBackgroundBottomColor(backgroundBottomColor) // Set bottom color
-                .setTitleIconColor(resources.getColor(R.color.white))
-                .setCustomView(R.layout.activity_start_share_location)//Set custom layout
-                .setCornerRadius(10f) //Set dialog corner radius
-                .setCanceledOnTouchOutside(true) // Dismiss on tap outside
-                .show()  // Finally don't forget to call show()
-        dialog.getNegativeButton()!!.visibility = View.INVISIBLE
-        dialog.getPositiveButton()!!.visibility = View.INVISIBLE
-        dialog.getGotItButtonTextView()!!.text = "ACEPTAR"
-        dialog.getGotItButtonIconView()!!.visibility = View.GONE
-        dialog.getNegativeButtonIconView()!!.visibility = View.GONE
-        dialog.getPositiveButtonIconView()!!.visibility = View.GONE
-        dialog.getNegativeButtonTextView()!!.visibility = View.GONE
-        dialog.getPositiveButtonTextView()!!.visibility = View.GONE
-        dialog.getGotItButton()!!.setOnClickListener {
-            dialog.dismiss()
-        }
-        // access your customView
-        val contentView: View? = dialog.getCustomView()
+
+    }
+
+    fun notTimed(view: View) {
+        viewModel.timedChanged(false)
+//        dataBindingUtil.apply {
+//            roundableNotTimed.backgroundColor = R.color.purple_light
+//            roundableTimed.backgroundColor = R.color.white
+//        }
+
+    }
+
+    fun timed(view: View) {
+        viewModel.timedChanged(true)
+//        dataBindingUtil.apply {
+//            roundableTimed.backgroundColor = R.color.purple_light
+//            roundableNotTimed.backgroundColor = R.color.white
+//        }
     }
 }

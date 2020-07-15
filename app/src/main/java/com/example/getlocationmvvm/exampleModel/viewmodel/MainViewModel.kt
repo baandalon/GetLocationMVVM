@@ -13,6 +13,7 @@ class MainViewModel: ViewModel(), LifecycleObserver, DataInterfaces{
 
     var repo = RepoWebDS()
     var dataModel= MutableLiveData<ModelStructure>(null)
+    var isTimed: MutableLiveData<Boolean> = MutableLiveData(true)
 
     init {
         dataModel = MutableLiveData()
@@ -20,6 +21,13 @@ class MainViewModel: ViewModel(), LifecycleObserver, DataInterfaces{
     }
     fun onDataRequest(path: String){
         repo.getData(path)
+    }
+
+    fun timedChanged(timedValue: Boolean){
+        isTimed.value?.let {
+            isTimed.postValue(timedValue)
+            Log.e("data", timedValue.toString())
+        }
     }
 
     override fun onDataChanged(data: DataSnapshot) {
