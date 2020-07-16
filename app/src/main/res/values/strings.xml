@@ -2,4 +2,10 @@
     <string name="app_name">GetLocationMVVM</string>
     <string name="get_current_location">Get Current Location</string>
     <string name="decidir_m_s_tarde">Decidiré más tarde</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="correcttimed">CorrectTimed</string>
+    <string name="hora">Hora</string>
+    <string name="dejar_de_compartir_hasta">Dejar de compartir hasta</string>
+    <string name="finalizar_hasta">Finalizar hasta</string>
+    <string name="_45">45</string>
 </resources>

@@ -6,8 +6,10 @@
         <variable
             name="viewModelMain"
             type="com.example.getlocationmvvm.exampleModel.viewmodel.MainViewModel" />
+        <import type="android.view.View"/>
     </data>
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
@@ -15,9 +17,8 @@
         <LinearLayout
             android:id="@+id/textTop"
             android:layout_marginVertical="20dp"
-            android:layout_centerHorizontal="true"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
@@ -29,84 +30,102 @@
                 android:text='@{viewModelMain.dataModel != null?"Hola, " + viewModelMain.dataModel.action.action2:"Hola"}'
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <TextView
-                android:textSize="17sp"
-                android:fontFamily="@font/roboto_light"
-                android:text="Comparte tu ubicacion\ncon tus seres queridos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
 
         </LinearLayout>
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie"
-            android:layout_below="@id/textTop"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            app:lottie_loop="true"
+        <LinearLayout
             android:layout_marginBottom="30dp"
-            app:lottie_autoPlay="true"
-            app:lottie_rawRes="@raw/map3"/>
+            android:id="@+id/lottie"
+            android:paddingVertical="5dp"
+            android:layout_marginStart="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+            <com.tistory.zladnrms.roundablelayout.RoundableLayout
+                android:layout_width="150dp"
+                android:elevation="8dp"
+                app:cornerRightBottom="100dp"
+                android:layout_margin="10dp"
+                app:cornerRightTop="100dp"
+                app:backgroundColor="@color/white"
+                app:cornerLeftBottom="100dp"
+                android:layout_height="150dp">
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/map3"/>
+            </com.tistory.zladnrms.roundablelayout.RoundableLayout>
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_marginHorizontal="20dp"
+                android:layout_gravity="center_vertical"
+                android:textSize="17sp"
+                android:fontFamily="@font/roboto_light"
+                android:text="Comparte tu ubicacion\ncon tus seres queridos"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_marginHorizontal="20dp"
-            android:layout_below="@id/lottie"
-            android:layout_above="@id/btnBottom"
+            android:layout_marginHorizontal="50dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_weight="2"
+            android:layout_height="0dp">
+
             <com.tistory.zladnrms.roundablelayout.RoundableLayout
                 android:id="@+id/roundableNotTimed"
-                app:backgroundColor="@{viewModelMain.isTimed?@color/white:@color/purple_light}"
+                app:backgroundColor="@{viewModelMain.isTimed?@color/gray:@color/purple_light}"
                 android:foreground="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:onClick="notTimed"
                 app:cornerRightSide="15dp"
                 app:cornerLeftSide="15dp"
-                app:strokeLineColor="@color/purple_middle"
-                app:strokeLineWidth="1dp"
+                android:elevation="@{viewModelMain.isTimed == true ? @dimen/dimenNOElevation : @dimen/dimenElevation}"
+                android:layout_marginHorizontal="10dp"
                 android:layout_width="match_parent"
                 android:paddingVertical="15dp"
-                android:paddingStart="10dp"
-                android:layout_height="wrap_content">
+                android:layout_weight="2"
+                android:layout_height="0dp"
+                android:focusable="true">
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp">
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:textAlignment="center"
+                        android:textColor="@color/purple_middle"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/dejar_de_compartir_hasta"
+                        android:textSize="13sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:textColor="@color/purple_strong"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/decidir_m_s_tarde"
+                        android:textSize="19sp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                        <ImageView
-                            android:id="@+id/imgNotTimed"
-                            android:visibility="@{viewModelMain.isTimed ? 0 : 1, default = gone}"
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_tick"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                    <LinearLayout
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="0dp"
-                        android:layout_weight="3.5"
-                        android:orientation="vertical"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:textColor="@color/purple_middle"
-                            android:fontFamily="@font/roboto"
-                            android:text="Finalizar hasta"
-                            android:textSize="13sp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:textColor="@color/purple_strong"
-                            android:fontFamily="@font/roboto_bold"
-                            android:text="@string/decidir_m_s_tarde"
-                            android:layout_weight="3"
-                            android:textSize="19sp"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"/>
-                    </LinearLayout>
+                    <ImageView
+                        android:layout_marginVertical="10dp"
+                        android:id="@+id/imgNotTimed"
+                        android:visibility="@{viewModelMain.isTimed == true ? View.GONE : View.VISIBLE}"
+                        android:layout_marginHorizontal="10dp"
+                        android:src="@drawable/ic_tick"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
                 </LinearLayout>
-
 
             </com.tistory.zladnrms.roundablelayout.RoundableLayout>
             <com.tistory.zladnrms.roundablelayout.RoundableLayout
@@ -114,90 +133,92 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:onClick="timed"
+                android:elevation="@{viewModelMain.isTimed == true ? @dimen/dimenElevation : @dimen/dimenNOElevation}"
                 android:layout_marginVertical="20dp"
-                app:backgroundColor="@{viewModelMain.isTimed?@color/purple_light:@color/white}"
+                app:backgroundColor="@{viewModelMain.isTimed?@color/purple_light:@color/gray}"
                 app:cornerRightSide="15dp"
                 app:cornerLeftSide="15dp"
-                app:strokeLineColor="@color/purple_middle"
-                app:strokeLineWidth="1dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_width="match_parent"
                 android:paddingVertical="15dp"
-                android:paddingStart="10dp"
-                android:layout_height="wrap_content">
+                android:layout_weight="2"
+                android:layout_height="0dp">
 
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp">
-                    <ImageView
-                        android:id="@+id/imgTimed"
-                        android:visibility="@{viewModelMain.isTimed ? 1 : 0, default = visible}"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_tick"
-                        android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:textColor="@color/purple_middle"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/finalizar_hasta"
+                        android:textSize="13sp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="3.5"
-                        android:orientation="vertical"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:textColor="@color/purple_middle"
-                            android:fontFamily="@font/roboto"
-                            android:text="Finalizar hasta"
-                            android:textSize="13sp"
-                            android:layout_width="match_parent"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:paddingHorizontal="7dp"
+                            android:background="@drawable/rounded"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@string/_45"
+                            android:hint="@string/hora"
+                            android:textSize="17sp"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"/>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:paddingHorizontal="7dp"
-                                android:background="@drawable/rounded"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/roboto_bold"
-                                android:text="45"
-                                android:textSize="17sp"
-                                android:layout_width="70dp"
-                                android:layout_height="wrap_content"/>
-                            <com.tistory.zladnrms.roundablelayout.RoundableLayout
-                                app:strokeLineColor="@color/purple_middle"
-                                app:cornerLeftSide="5dp"
-                                app:cornerRightSide="5dp"
-                                app:strokeLineWidth="0.5dp"
-                                android:foreground="?attr/selectableItemBackground"
-                                android:clickable="true"
-                                android:layout_marginStart="5dp"
-                                android:paddingVertical="3dp"
-                                android:paddingHorizontal="10dp"
+                        <com.tistory.zladnrms.roundablelayout.RoundableLayout
+                            app:strokeLineColor="@color/purple_middle"
+                            app:cornerLeftSide="5dp"
+                            app:cornerRightSide="5dp"
+                            app:strokeLineWidth="0.5dp"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:layout_marginStart="5dp"
+                            android:paddingVertical="3dp"
+                            android:paddingHorizontal="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusable="true">
+                            <TextView
+                                android:text="@string/hora"
+                                android:textSize="13sp"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:text="Hora"
-                                    android:textSize="13sp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                            </com.tistory.zladnrms.roundablelayout.RoundableLayout>
-
-                        </LinearLayout>
+                                android:layout_height="wrap_content"/>
+                        </com.tistory.zladnrms.roundablelayout.RoundableLayout>
 
                     </LinearLayout>
+                    <ImageView
+                        android:layout_marginVertical="10dp"
+                        android:id="@+id/imgTimed"
+                        android:visibility="@{viewModelMain.isTimed == true ? View.VISIBLE : View.GONE}"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/ic_tick"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="@string/correcttimed" />
                 </LinearLayout>
             </com.tistory.zladnrms.roundablelayout.RoundableLayout>
         </LinearLayout>
-
         <Button
             android:id="@+id/btnBottom"
             style="@style/MyButton"
-            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
             android:onClick="start"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="18sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Iniciar"
+            android:layout_height="60dp"
+            android:text="@string/iniciar"
             android:textAllCaps="false" />
-    </RelativeLayout>
+
+    </LinearLayout>
+
 </layout>

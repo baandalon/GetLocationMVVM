@@ -14,6 +14,7 @@ class MainViewModel: ViewModel(), LifecycleObserver, DataInterfaces{
     var repo = RepoWebDS()
     var dataModel= MutableLiveData<ModelStructure>(null)
     var isTimed: MutableLiveData<Boolean> = MutableLiveData(true)
+    var tipoContador: MutableLiveData<String> = MutableLiveData("minute")
 
     init {
         dataModel = MutableLiveData()
