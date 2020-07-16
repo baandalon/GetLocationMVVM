@@ -1,6 +1,7 @@
 package com.example.getlocationmvvm.exampleModel.viewmodel
 
 import android.util.Log
+import android.view.OrientationEventListener
 import androidx.lifecycle.*
 import com.example.getlocationmvvm.exampleModel.interfaces.DataInterfaces
 import com.example.getlocationmvvm.exampleModel.model.Action
@@ -14,7 +15,8 @@ class MainViewModel: ViewModel(), LifecycleObserver, DataInterfaces{
     var repo = RepoWebDS()
     var dataModel= MutableLiveData<ModelStructure>(null)
     var isTimed: MutableLiveData<Boolean> = MutableLiveData(true)
-    var tipoContador: MutableLiveData<String> = MutableLiveData("minute")
+    var TYPE_CONTADOR: MutableLiveData<String> = MutableLiveData("Minutos")
+    var orientationValue: MutableLiveData<Int> = MutableLiveData(1)
 
     init {
         dataModel = MutableLiveData()
@@ -31,6 +33,12 @@ class MainViewModel: ViewModel(), LifecycleObserver, DataInterfaces{
         }
     }
 
+    fun changeTypeContador(){
+        when(TYPE_CONTADOR.value){
+            "Horas" ->TYPE_CONTADOR.postValue("Minutos")
+            "Minutos" ->TYPE_CONTADOR.postValue("Horas")
+        }
+    }
     override fun onDataChanged(data: DataSnapshot) {
         val modelAction: Action = data.child("action").getValue(Action::class.java)!!
         val modelData: Data = data.child("data").getValue(Data::class.java)!!

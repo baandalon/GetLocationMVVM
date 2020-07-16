@@ -6,6 +6,6 @@
     <string name="correcttimed">CorrectTimed</string>
     <string name="hora">Hora</string>
     <string name="dejar_de_compartir_hasta">Dejar de compartir hasta</string>
-    <string name="finalizar_hasta">Finalizar hasta</string>
-    <string name="_45">45</string>
+    <string name="compartir_durante">Compartir durante</string>
+    <string name="_10">10</string>
 </resources>

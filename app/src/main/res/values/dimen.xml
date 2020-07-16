@@ -2,4 +2,5 @@
 <resources>
     <dimen name="dimenElevation">10dp</dimen>
     <dimen name="dimenNOElevation">0dp</dimen>
+    <dimen name="dimen2">2</dimen>
 </resources>

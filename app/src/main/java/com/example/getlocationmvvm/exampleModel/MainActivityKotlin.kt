@@ -1,6 +1,8 @@
 package com.example.getlocationmvvm.exampleModel
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -16,6 +18,7 @@ class MainActivityKotlin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_kotlin)
+
         lifecycle.addObserver(viewModel)
         dataBindingUtil = DataBindingUtil.setContentView<ActivityMainKotlinBinding>(this,
                 R.layout.activity_main_kotlin).apply {
@@ -23,7 +26,8 @@ class MainActivityKotlin : AppCompatActivity() {
             this.lifecycleOwner = this@MainActivityKotlin
             this.viewModelMain = viewModel
         }
-
+        //Detect orientation
+        viewModel.orientationValue.postValue(resources.configuration.orientation)
     }
 
     fun start(view: View) {
@@ -32,18 +36,13 @@ class MainActivityKotlin : AppCompatActivity() {
 
     fun notTimed(view: View) {
         viewModel.timedChanged(false)
-//        dataBindingUtil.apply {
-//            roundableNotTimed.backgroundColor = R.color.purple_light
-//            roundableTimed.backgroundColor = R.color.white
-//        }
-
     }
 
     fun timed(view: View) {
         viewModel.timedChanged(true)
-//        dataBindingUtil.apply {
-//            roundableTimed.backgroundColor = R.color.purple_light
-//            roundableNotTimed.backgroundColor = R.color.white
-//        }
+    }
+
+    fun changeType(view: View) {
+        viewModel.changeTypeContador()
     }
 }
