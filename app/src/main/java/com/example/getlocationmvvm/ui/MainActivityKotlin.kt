@@ -1,8 +1,6 @@
-package com.example.getlocationmvvm.exampleModel
+package com.example.getlocationmvvm.ui
 
-import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
