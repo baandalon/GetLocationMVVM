@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -43,8 +44,15 @@ dependencies {
     //PrettyCustomLayouts
     implementation 'com.github.florent37:diagonallayout:1.0.9'
     implementation 'com.github.zladnrms:RoundableLayout:1.1.3'
-    //lottieAnimation
+    //LottieAnimation
     implementation 'com.airbnb.android:lottie:3.4.1'
-    //switcherX
+    //SwitcherX
     implementation 'com.bitvale:switcher:1.1.0'
+    //KToast
+    implementation 'com.github.onurkagan:ktoast:1.0.3'
+    //Dagger2
+    implementation 'com.google.dagger:dagger:2.23.2'
+    kapt 'com.google.dagger:dagger-compiler:2.23.2'
 }
+
+

@@ -5,28 +5,45 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.getlocationmvvm.App
 import com.example.getlocationmvvm.R
 import com.example.getlocationmvvm.databinding.ActivityLoginBinding
-import com.example.getlocationmvvm.databinding.ActivityMainKotlinBinding
-import com.example.getlocationmvvm.exampleModel.viewmodel.MainViewModel
+import com.example.getlocationmvvm.sys.PrettyToast
+import com.example.getlocationmvvm.sys.TypePrettyToast
+import com.example.getlocationmvvm.sys.di.DaggerComponentPrettyToast
 import com.example.getlocationmvvm.viewmodel.LoginViewModel
+import javax.inject.Inject
 
 
 class LoginActivity : AppCompatActivity() {
     val viewModel by lazy { ViewModelProvider(this).get(LoginViewModel::class.java) }
     lateinit var dataBindingUtil: ActivityLoginBinding
+
+    @Inject lateinit var prettyToast: PrettyToast
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        DaggerComponentPrettyToast.create().inject(this)
         lifecycle.addObserver(viewModel)
         dataBindingUtil = DataBindingUtil.setContentView<ActivityLoginBinding>(this,
-                R.layout.activity_main_kotlin).apply {
+                R.layout.activity_login).apply {
             //*** Con el apply puedes acceder a lo que está dentro del elemento ***
             this.lifecycleOwner = this@LoginActivity
             this.viewModelLogin = viewModelLogin
         }
     }
+    fun Logging(){
+        viewModel.txtUser.postValue(dataBindingUtil.txtUser.text.toString().trim())
+        viewModel.txtPass.postValue(dataBindingUtil.txtPass.text.toString().trim())
+        if(viewModel.txtUser.value!!.isEmpty() || viewModel.txtPass.value!!.isEmpty()){
+            prettyToast.ShowToast("Vacio", TypePrettyToast.WARNING_TOAST, this)
+        }
 
+    }
+
+    fun startSession(view: View) {
+        Logging()
+    }
 
 }
