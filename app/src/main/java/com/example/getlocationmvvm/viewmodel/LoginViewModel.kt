@@ -1,18 +1,21 @@
 package com.example.getlocationmvvm.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.getlocationmvvm.domain.LoginRepository
+import javax.inject.Inject
 
-class LoginViewModel: ViewModel(), LifecycleObserver {
+class LoginViewModel @ViewModelInject constructor(): ViewModel(), LifecycleObserver {
 
-    val logging: MutableLiveData<Boolean> = MutableLiveData(false)
+    @Inject
+    lateinit var loginRepository: LoginRepository
+
     val txtUser: MutableLiveData<String> = MutableLiveData("")
     val txtPass: MutableLiveData<String> = MutableLiveData("")
-    fun loggingUser(){
-        logging.postValue(true)
-    }
-    fun fillDataUser(){
 
+    fun requestLogin(user: String, password: String) {
+        loginRepository.requestUserNetwork(user, password)
     }
 }

@@ -3,14 +3,16 @@ package com.example.getlocationmvvm.sys.di
 import com.example.getlocationmvvm.sys.PrettyToast
 import dagger.Module
 import dagger.Provides
-import javax.inject.Inject
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
 import javax.inject.Singleton
 
 @Module
-class ModulePrettyToast @Inject constructor() {
+@InstallIn(ActivityRetainedComponent::class)
+class ModulePrettyToast{
 
-    @Singleton
     @Provides
+    @Singleton
     fun providesPrettyToast(): PrettyToast {
         return PrettyToast()
     }

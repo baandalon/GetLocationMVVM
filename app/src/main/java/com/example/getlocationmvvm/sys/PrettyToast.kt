@@ -2,7 +2,6 @@ package com.example.getlocationmvvm.sys
 
 import android.app.Activity
 import android.view.Gravity
-import com.example.getlocationmvvm.sys.di.App
 import com.onurkaganaldemir.ktoastlib.KToast
 
 class PrettyToast {
