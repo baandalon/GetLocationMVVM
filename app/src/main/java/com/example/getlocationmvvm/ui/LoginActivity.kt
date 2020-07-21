@@ -2,7 +2,6 @@ package com.example.getlocationmvvm.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -12,17 +11,12 @@ import com.example.getlocationmvvm.sys.PrettyToast
 import com.example.getlocationmvvm.sys.TypePrettyToast
 import com.example.getlocationmvvm.sys.di.DaggerComponentPrettyToast
 import com.example.getlocationmvvm.viewmodel.LoginViewModel
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
-@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
-//    val viewModel by lazy { ViewModelProvider(this).get(LoginViewModel::class.java) }
-    private val viewModel: LoginViewModel by viewModels()
+    val viewModel by lazy { ViewModelProvider(this).get(LoginViewModel::class.java) }
 
     lateinit var dataBindingUtil: ActivityLoginBinding
-
     @Inject lateinit var prettyToast: PrettyToast
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,12 +32,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     private fun logging(){
-        viewModel.txtUser.postValue(dataBindingUtil.txtUser.text.toString().trim())
-        viewModel.txtPass.postValue(dataBindingUtil.txtPass.text.toString().trim())
-        if(viewModel.txtUser.value!!.isEmpty() || viewModel.txtPass.value!!.isEmpty()){
+        val user = dataBindingUtil.txtUser.text.toString().trim()
+        val pass = dataBindingUtil.txtPass.text.toString().trim()
+        if(user.isEmpty() || pass.isEmpty()){
           return prettyToast.ShowToast("Vacio", TypePrettyToast.WARNING_TOAST, this)
         }
-        viewModel.requestLogin(viewModel.txtUser.value!!, viewModel.txtPass.value!!)
+        viewModel.requestLogin(user, pass)
     }
 
     fun startSession(view: View) {

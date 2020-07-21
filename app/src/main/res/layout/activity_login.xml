@@ -43,7 +43,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:hint="@string/prompt_password"
-        android:text="12345678"
+        android:text="123456"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
@@ -55,6 +55,7 @@
     <Button
         android:onClick="startSession"
         android:id="@+id/login"
+        android:visibility="@{viewModelLogin.loggingUser == true ? View.GONE:View.VISIBLE}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
