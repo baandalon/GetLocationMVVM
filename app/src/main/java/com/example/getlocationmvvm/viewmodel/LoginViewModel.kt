@@ -19,16 +19,10 @@ class LoginViewModel: ViewModel(), LifecycleObserver, FirebaseAuthInterfaces {
         DaggerComponentPrettyToast.create().inject(this)
         loginRepository.loginWebDS.setInterfaces(this)
     }
-    val txtUser: MutableLiveData<String> = MutableLiveData("")
-    val txtPass: MutableLiveData<String> = MutableLiveData("")
     var loggingUser: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun requestLogin(user: String, password: String) {
         loginRepository.requestUserNetwork(user, password)
-        txtUser.postValue(user)
-        txtPass.postValue(password)
-        loggingUser.postValue(true)
-        Log.e("login", loggingUser.value.toString())
     }
 
     override fun LoginCorrect(user: FirebaseUser, result: AuthResult) {
@@ -37,8 +31,6 @@ class LoginViewModel: ViewModel(), LifecycleObserver, FirebaseAuthInterfaces {
 
     override fun LoginFailed(boolean: Boolean) {
         Log.e("login","failed")
-        txtUser.postValue("")
-        txtPass.postValue("")
     }
 
 }
