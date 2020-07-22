@@ -15,7 +15,7 @@ import com.example.getlocationmvvm.viewmodel.LoginViewModel
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
-    val viewModel by lazy { ViewModelProvider(this).get(LoginViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(LoginViewModel::class.java) }
 
     lateinit var dataBindingUtil: ActivityLoginBinding
     @Inject lateinit var prettyToast: PrettyToast

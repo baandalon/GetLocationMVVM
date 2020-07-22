@@ -2,6 +2,7 @@ package com.example.getlocationmvvm.sys.di
 
 import com.example.getlocationmvvm.data.datasource.web.LoginWebDS
 import com.example.getlocationmvvm.domain.LoginRepository
+import com.example.getlocationmvvm.sys.utils.MethodMenu
 import com.example.getlocationmvvm.sys.utils.PrettyToast
 import dagger.Module
 import dagger.Provides
@@ -26,5 +27,11 @@ class ModulePrettyToast{
     @Singleton
     fun providesLoginWebDS(): LoginWebDS{
         return LoginWebDS()
+    }
+
+    @Provides
+    @Singleton
+    fun providesMethodMenu(): MethodMenu{
+        return MethodMenu()
     }
 }
