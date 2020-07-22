@@ -1,4 +1,4 @@
-package com.example.getlocationmvvm.sys
+package com.example.getlocationmvvm.sys.utils
 
 import android.app.Activity
 import android.view.Gravity

@@ -1,15 +1,14 @@
 package com.example.getlocationmvvm.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.getlocationmvvm.R
 import com.example.getlocationmvvm.databinding.ActivityLoginBinding
-import com.example.getlocationmvvm.sys.PrettyToast
-import com.example.getlocationmvvm.sys.TypePrettyToast
+import com.example.getlocationmvvm.sys.utils.PrettyToast
+import com.example.getlocationmvvm.sys.utils.TypePrettyToast
 import com.example.getlocationmvvm.sys.di.DaggerComponentPrettyToast
 import com.example.getlocationmvvm.viewmodel.LoginViewModel
 import javax.inject.Inject
