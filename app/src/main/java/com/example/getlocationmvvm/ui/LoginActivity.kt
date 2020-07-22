@@ -41,8 +41,16 @@ class LoginActivity : AppCompatActivity() {
                         login.visibility = View.VISIBLE
                         txtUser.visibility = View.VISIBLE
                         txtPass.visibility = View.VISIBLE
+                        loading.visibility = View.GONE
                     }
                 }
+        }
+        viewModel.onRequestLoginSuccessful.observeForever{auth ->
+            if(auth.authCorrect){
+                prettyToast.showToast("Correct", TypePrettyToast.SUCCESS_TOAST, this)
+            }else{
+                prettyToast.showToast("Verifique los datos", TypePrettyToast.ERROR_TOAST, this)
+            }
         }
 
     }
@@ -50,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
         val user = dataBindingUtil.txtUser.text.toString().trim()
         val pass = dataBindingUtil.txtPass.text.toString().trim()
         if(user.isEmpty() || pass.isEmpty()){
-          return prettyToast.ShowToast("Vacio", TypePrettyToast.WARNING_TOAST, this)
+          return prettyToast.showToast("Vacio", TypePrettyToast.WARNING_TOAST, this)
         }
         viewModel.requestLogin(user, pass)
         viewModel.loggingUser.postValue(true)

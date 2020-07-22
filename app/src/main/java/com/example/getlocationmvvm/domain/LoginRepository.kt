@@ -1,6 +1,8 @@
 package com.example.getlocationmvvm.domain
 
+import androidx.lifecycle.Observer
 import com.example.getlocationmvvm.data.datasource.web.LoginWebDS
+import com.example.getlocationmvvm.model.AuthResult
 import com.example.getlocationmvvm.sys.di.DaggerComponentPrettyToast
 import javax.inject.Inject
 
@@ -12,8 +14,8 @@ class LoginRepository{
         DaggerComponentPrettyToast.create().inject(this)
     }
 
-    fun requestUserNetwork(user: String, password: String) {
-        loginWebDS.requestUserNetwork(user, password)
+    fun requestUserNetwork(user: String, password: String, observer: Observer<AuthResult>) {
+        loginWebDS.requestUserNetwork(user, password, observer)
     }
 
 }

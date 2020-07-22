@@ -1,24 +1,19 @@
 package com.example.getlocationmvvm.data.datasource.web
 
-import android.content.ContentValues.TAG
-import android.util.Log
+import androidx.lifecycle.Observer
+import com.example.getlocationmvvm.model.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginWebDS{
 
-    lateinit var authValues:FirebaseAuthInterfaces
-
-    fun setInterfaces(dataInterfaces: FirebaseAuthInterfaces){
-        this.authValues = dataInterfaces
-    }
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
-    fun requestUserNetwork(user: String, pass: String){
+    fun requestUserNetwork(user: String, pass: String, observer: Observer<AuthResult>){
         auth.signInWithEmailAndPassword(user, pass)
                 .addOnCompleteListener{
                     if (it.isSuccessful) {
-                        authValues.LoginCorrect(auth.currentUser!!, it.result!!)
+                         observer.onChanged(AuthResult(auth.currentUser,it.result, true))
                     } else {
-                        authValues.LoginFailed(true)
+                        observer.onChanged(AuthResult(null,null, false))
                     }
                 }
     }

@@ -13,12 +13,11 @@ import android.os.PowerManager.WakeLock
 import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.ActivityCompat
-import com.example.getlocationmvvm.model.location
+import com.example.getlocationmvvm.model.Location
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.tasks.Task
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.*
 import kotlin.system.measureTimeMillis
@@ -97,8 +96,8 @@ class SendDataIntentServiceKot : IntentService("SendDataIntentServiceKot") {
 
     fun upload(datolatitude: String, datolongitud: String){
         val databaseref = FirebaseDatabase.getInstance().getReference("direccion")
-        val hash: HashMap<String,location> = HashMap()
-        hash.put("location", location(datolatitude,datolongitud))
+        val hash: HashMap<String,Location> = HashMap()
+        hash.put("location", Location(datolatitude,datolongitud))
         Log.e("intent", "tryin")
         databaseref.child("data").setValue(hash)
      }
