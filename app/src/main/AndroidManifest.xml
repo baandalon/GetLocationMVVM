@@ -29,6 +29,7 @@
         <activity android:name=".ui.MainActivityKotlin">
 
         </activity>
+        <activity android:name=".ui.InicioActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"

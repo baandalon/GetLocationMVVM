@@ -1,5 +1,6 @@
 package com.example.getlocationmvvm.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -48,6 +49,8 @@ class LoginActivity : AppCompatActivity() {
         viewModel.onRequestLoginSuccessful.observeForever{auth ->
             if(auth.authCorrect){
                 prettyToast.showToast("Correct", TypePrettyToast.SUCCESS_TOAST, this)
+                startActivity(Intent(this, InicioActivity::class.java))
+                finish()
             }else{
                 prettyToast.showToast("Verifique los datos", TypePrettyToast.ERROR_TOAST, this)
             }
