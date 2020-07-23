@@ -13,14 +13,10 @@ class LoginViewModel: ViewModel(), LifecycleObserver {
 
     @Inject lateinit var loginRepository: LoginRepository
     var onRequestLoginSuccessful: MutableLiveData<AuthResult> = MutableLiveData()
-
-    init {
-        DaggerComponentPrettyToast.create().inject(this)
-//        loginRepository.loginWebDS.setInterfaces(this)
-    }
     var loggingUser: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun requestLogin(user: String, password: String) {
+        DaggerComponentPrettyToast.create().inject(this)
         loginRepository.requestUserNetwork(user, password, buildGetLoginResponseObserve())
     }
 
