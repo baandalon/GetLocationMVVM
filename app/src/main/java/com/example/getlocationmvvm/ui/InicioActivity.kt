@@ -23,9 +23,11 @@ import javax.inject.Inject
 
 class InicioActivity : AppCompatActivity(), DrawerAdapter.OnItemSelectedListener {
 
+    //Dagger
     @Inject
     lateinit var methodMenu: MethodMenu
-    private val viewModel by lazy { ViewModelProvider(this).get(InicioViewModel::class.java) }
+    @Inject
+    lateinit var viewModel: InicioViewModel
     lateinit var dataBindingUtil: ActivityStartBinding
     lateinit var slidingRootNav: SlidingRootNav
 
@@ -33,14 +35,13 @@ class InicioActivity : AppCompatActivity(), DrawerAdapter.OnItemSelectedListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
         DaggerComponentPrettyToast.create().inject(this)
+        viewModel =  ViewModelProvider(this).get(InicioViewModel::class.java)
         dataBindingUtil = DataBindingUtil.setContentView<ActivityStartBinding>(this,
                 R.layout.activity_start).apply {
             //*** Con el apply puedes acceder a lo que está dentro del elemento ***
             this.lifecycleOwner = this@InicioActivity
             this.viewModel = viewModel
         }
-        setSupportActionBar(dataBindingUtil.toolbar)
-
         //Inicializacion del MENU
         slidingRootNav = SlidingRootNavBuilder(this)
                 .withMenuOpened(false)

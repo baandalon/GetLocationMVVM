@@ -7,8 +7,9 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.example.getlocationmvvm.R
 import com.example.getlocationmvvm.sys.utils.menusliding.SimpleItem
+import javax.inject.Inject
 
-class MethodMenu {
+class MethodMenu @Inject constructor(){
 
     fun createItemFor(position: Int, screenTitles: Array<String>, screenIcons: Array<Drawable?>, activity: Activity): SimpleItem {
         return SimpleItem(screenIcons[position], screenTitles[position])

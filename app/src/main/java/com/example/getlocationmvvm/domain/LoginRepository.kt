@@ -6,7 +6,7 @@ import com.example.getlocationmvvm.model.AuthResult
 import com.example.getlocationmvvm.sys.di.DaggerComponentPrettyToast
 import javax.inject.Inject
 
-class LoginRepository{
+class LoginRepository @Inject constructor(){
 
     @Inject lateinit var loginWebDS: LoginWebDS
 

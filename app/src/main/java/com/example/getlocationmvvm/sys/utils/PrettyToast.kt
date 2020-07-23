@@ -3,8 +3,9 @@ package com.example.getlocationmvvm.sys.utils
 import android.app.Activity
 import android.view.Gravity
 import com.onurkaganaldemir.ktoastlib.KToast
+import javax.inject.Inject
 
-class PrettyToast {
+class PrettyToast  @Inject constructor(){
 
     fun showToast(text: String, type: TypePrettyToast, activity: Activity){
         when(type){
