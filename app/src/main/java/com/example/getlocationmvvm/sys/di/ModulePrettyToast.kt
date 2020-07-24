@@ -6,6 +6,7 @@ import com.example.getlocationmvvm.domain.LoginRepository
 import com.example.getlocationmvvm.sys.utils.MethodMenu
 import com.example.getlocationmvvm.sys.utils.PrettyToast
 import com.example.getlocationmvvm.viewmodel.InicioViewModel
+import com.example.getlocationmvvm.viewmodel.UsersFragmentViewModel
 import com.yarolegovich.slidingrootnav.SlidingRootNav
 import dagger.Module
 import dagger.Provides
@@ -42,6 +43,12 @@ class ModulePrettyToast{
     @Singleton
     fun providesInicioViewModel(): InicioViewModel{
         return InicioViewModel()
+    }
+
+    @Provides
+    @Singleton
+    fun providesUsersFragmentViewModel(): UsersFragmentViewModel{
+        return UsersFragmentViewModel()
     }
 
 }

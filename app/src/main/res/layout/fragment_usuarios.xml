@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+<data>
+    <variable
+        name="viewModel"
+        type="com.example.getlocationmvvm.viewmodel.UsersFragmentViewModel" />
+</data>
 <androidx.appcompat.widget.LinearLayoutCompat
     android:orientation="vertical"
     android:gravity="center"
@@ -11,5 +18,12 @@
         android:textSize="30sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <EditText
+        android:background="@color/white"
+        android:text="TEXTO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>
